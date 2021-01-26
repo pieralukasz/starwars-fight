@@ -1,6 +1,7 @@
 import React from "react";
 import { RouteConfig, RouteConfigComponentProps } from "react-router-config";
 import {Dashboard} from "../views/Dashboard/Dashboard";
+import {Statistic} from "../views/Statistic/Statistic";
 
 export interface Config extends RouteConfig {
   component:
@@ -19,7 +20,7 @@ const ROUTES: Config[] = [
     path: "/stats",
     key: "STATS",
     exact: false,
-    component: () => <div>SHITIIITITIT</div>
+    component: Statistic
   },
 ];
 

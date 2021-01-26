@@ -1,12 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
-import {CardExt} from "../../components/Dashboard/Card/Card";
-import {CardContainer} from "../../components/Dashboard/Card/CardContainer";
+import { CardContainer } from "../../components/Dashboard/Card/CardContainer";
+import { BaseButton } from "../../components/Dashboard/GenerateButton";
 
 export const Dashboard: React.FC = () => {
-  return (<DashboardContainer>
-    <CardContainer />
-  </DashboardContainer>)
+  return (
+    <DashboardContainer>
+      <CardContainer />
+      <BaseButton fontColor={'black'} backgroundColor={'yellow'} position={'left'} percent={50}>
+        generate random players
+      </BaseButton>
+      <BaseButton fontColor={'white'} backgroundColor={'#8B1FA7'} position={'right'} percent={2}>
+        history
+      </BaseButton>
+  </DashboardContainer>
+  )
 }
 
 const DashboardContainer = styled.div`

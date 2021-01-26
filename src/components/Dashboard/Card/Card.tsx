@@ -38,8 +38,9 @@ const QuestionMark = styled.p`
   font-size: 14rem;
   color: rgba(255, 255, 255, 0.8);
   left: 50%;
-  top: 0;
+  top: 1rem;
   transform: translate(-50%, -75%);
+  width: 100%;
 
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
