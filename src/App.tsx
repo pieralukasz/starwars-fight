@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react';
+import { BrowserRouter as Router} from "react-router-dom";
+
 import {useDispatch, useSelector} from "react-redux";
 import {RootStoreType} from "./store";
-import {GetStarwars, GetTwoStarwarsPlayer} from "./actions/StarwarsActions";
+import { GetTwoStarwarsPlayer } from "./actions/StarwarsActions";
+import {Background} from "./components/Background";
+import {Navigation} from "./components/Navigation/Navigation";
 
 const App: React.FC = () => {
 
@@ -24,11 +28,15 @@ const App: React.FC = () => {
   }, [starwarsState])
 
   return (
-    <div className="App">
-      <button onClick={handleSubmit}>Submit</button>
-      <div>{firstPlayer}</div>
-      <div>{secondPlayer}</div>
-    </div>
+    <Background>
+      <Router>
+      <Navigation />
+
+      </Router>
+      {/*<button onClick={handleSubmit}>Submit</button>*/}
+      {/*<div>{firstPlayer}</div>*/}
+      {/*<div>{secondPlayer}</div>*/}
+    </Background>
   );
 }
 
