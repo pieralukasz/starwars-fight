@@ -1,24 +1,33 @@
 import React from "react";
 import styled from "styled-components";
 
-interface BaseButtonStyleType {
+interface BaseButtonType {
   backgroundColor: string
   fontColor: string
   percent: number
   position: string
+  click?: void
 }
 
-export const BaseButton: React.FC<BaseButtonStyleType> = (props) => {
+export const BaseButton: React.FC<BaseButtonType> = (props) => {
   return (
     <BaseButtonStyle
       backgroundColor={ props.backgroundColor }
       fontColor={ props.fontColor }
       position={ props.position }
       percent={ props.percent }
+      onClick={ () => props.click }
     >
       { props.children }
     </BaseButtonStyle>
   )
+}
+
+interface BaseButtonStyleType {
+  backgroundColor: string
+  fontColor: string
+  percent: number
+  position: string
 }
 
 export const BaseButtonStyle = styled.button<BaseButtonStyleType> `

@@ -12,5 +12,5 @@ const NavigationStyle = styled.nav`
   color: yellow;
   text-align: center;
   font-size: 2rem;
-  padding-top: 2rem;
+  margin-top: 2rem;
 `
