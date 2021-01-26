@@ -5,6 +5,7 @@ import routes from "./routes";
 import {Background} from "./components/Background";
 import {Navigation} from "./components/Navigation/Navigation";
 import {LangPicker} from "./components/Lang";
+import './i18n'
 
 
 const App: React.FC = () => {
@@ -20,9 +21,6 @@ const App: React.FC = () => {
           ))}
         </Switch>
       </Router>
-      {/*<button onClick={handleSubmit}>Submit</button>*/}
-      {/*<div>{firstPlayer}</div>*/}
-      {/*<div>{secondPlayer}</div>*/}
     </Background>
   );
 }

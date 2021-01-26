@@ -7,7 +7,6 @@ import './style/fonts/jediFont.css'
 import Store from "./store";
 import { Provider } from "react-redux"
 
-
 ReactDOM.render(
   <Provider store={Store}>
     <App />

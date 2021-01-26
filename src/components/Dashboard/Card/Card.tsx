@@ -1,15 +1,20 @@
 import React from "react";
 import { Card } from "@material-ui/core";
 import styled from "styled-components";
+import { useTranslation } from 'react-i18next';
 
 type CardExtProps = {
   isActive: boolean
 }
 
 export const CardExt: React.FC<CardExtProps> = ({isActive, children}) => {
+
+  const { t } = useTranslation()
+
   return  (
     <CardExtStyle>
       { children }
+      {t("name")}
       { isActive ? <QuestionMark>?</QuestionMark> : ""}
     </CardExtStyle>
   )

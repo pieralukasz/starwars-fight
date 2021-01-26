@@ -27,7 +27,7 @@ export const Dashboard: React.FC = () => {
             fontColor={'white'}
             backgroundColor={'#8B1FA7'}
             position={'right'}
-            percent={-8}
+            percent={-6}
 
           >
             history
