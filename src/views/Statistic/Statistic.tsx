@@ -6,7 +6,7 @@ import styled from "styled-components";
 export const Statistic: React.FC = () => {
   return (<StatisticStyle>
     <Link to={'/'}>
-      <BaseButton backgroundColor='purple' fontColor='color' percent={0} position='left'>
+      <BaseButton backgroundColor='purple' fontColor='white' percent={-10} position='right'>
         back to game
       </BaseButton>
     </Link>
@@ -14,10 +14,9 @@ export const Statistic: React.FC = () => {
 }
 
 const StatisticStyle = styled.div`
-  width: 85%;
-  margin-left: 7.5%;
-  margin-top: 4rem;
-  background-color: red;
+  width: 90%;
+  margin-left: 5%;
+  padding-top: 4rem;
   position: relative;
   height: 80%;
 

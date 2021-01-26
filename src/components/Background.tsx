@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import styled from "styled-components"
 
 type BackgroundProps = {}
@@ -95,7 +95,7 @@ const BackgroundStyle = styled.div`
   left: 0;
   top: 0;
   width: 100vw;
-  height: 100vh;
+  height: 95%;
   z-index: 10;
   background: #000;
 

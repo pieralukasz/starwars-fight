@@ -13,37 +13,37 @@ export const Dashboard: React.FC = () => {
   return (
     <DashboardContainer>
       <CardContainer />
-      <BaseButton
-        fontColor={'black'}
-        backgroundColor={'yellow'}
-        position={'left'}
-        percent={50}
-        click={generateRandomPlayer()}
-      >
-        generate random players
-      </BaseButton>
-      <Link to={'/stats'}>
         <BaseButton
-          fontColor={'white'}
-          backgroundColor={'#8B1FA7'}
-          position={'right'}
-          percent={2}
+          fontColor={'black'}
+          backgroundColor={'yellow'}
+          position={'left'}
+          percent={50}
+          click={generateRandomPlayer()}
         >
-          history
+          generate random players
         </BaseButton>
-      </Link>
+        <Link to={'/stats'}>
+          <BaseButton
+            fontColor={'white'}
+            backgroundColor={'#8B1FA7'}
+            position={'right'}
+            percent={-8}
+
+          >
+            history
+          </BaseButton>
+        </Link>
   </DashboardContainer>
   )
 }
 
 const DashboardContainer = styled.div`
-  width: 85%;
-  margin-left: 7.5%;
+  width: 90%;
+  margin-left: 5%;
   height: 80%;
-  margin-top: 4rem;
+  padding-top: 4rem;
   display: flex;
   justify-content: space-between;
-  background-color: blue;
   position: relative;
 
 `
