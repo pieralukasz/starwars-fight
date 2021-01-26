@@ -1,38 +1,49 @@
 import {CardExt} from "./Card";
-import React from "react";
+import React, { useState, useEffect }  from "react";
 import styled from "styled-components";
 // import {useDispatch, useSelector} from "react-redux";
 // import {RootStoreType} from "../../../store";
 // import {GetTwoStarwarsPlayer} from "../../../actions/StarwarsActions";
-
+import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
+import { RootStoreType } from "../../../store";
+import {StarwarsPeopleMass, StarwarsStarshipCrew} from "../../../actions/StarwarsActionsType";
 
 
 export const CardContainer: React.FC = () => {
 
-  // const dispatch = useDispatch()
-  // const starwarsState = useSelector((state: RootStoreType) => state.starwars)
-  //
-  // const [firstPlayer, setFirstPlayer] = useState("")
-  // const [secondPlayer, setSecondPlayer] = useState("")
-  //
-  // const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-  //   e.preventDefault()
-  //   await dispatch(GetTwoStarwarsPlayer())
-  // }
+  const { t } = useTranslation()
 
-  // useEffect(() => {
-  //   if (starwarsState.firstPlayer && starwarsState.secondPlayer) {
-  //     setFirstPlayer(starwarsState.firstPlayer.name)
-  //     setSecondPlayer(starwarsState.secondPlayer.name)
-  //   }
-  // }, [starwarsState])
+  const starwarsState = useSelector((state: RootStoreType) => state.starwars)
+
+  const [firstPlayer, setFirstPlayer] = useState<StarwarsPeopleMass | StarwarsStarshipCrew | undefined>(undefined)
+  const [secondPlayer, setSecondPlayer] = useState<StarwarsPeopleMass | StarwarsStarshipCrew | undefined>(undefined)
+
+  useEffect(() => {
+    if (starwarsState.firstPlayer && starwarsState.secondPlayer) {
+      setFirstPlayer(starwarsState.firstPlayer)
+      setSecondPlayer(starwarsState.secondPlayer)
+    }
+  }, [starwarsState])
 
 
   return (
     <CardContainerStyle>
-      <CardExt isActive={true}>1 Player</CardExt>
+      <CardExt
+        isActive={false}
+        position={'left'}
+      >
+        <div>Name: </div>
+        <div>{firstPlayer ? firstPlayer.name : ""}</div>
+        <div>Height: </div> {t("player")}
+      </CardExt>
       <VSStyle>vs</VSStyle>
-      <CardExt isActive={false}>2 Player</CardExt>
+      <CardExt
+        isActive={false}
+        position={'right'}
+      >
+        {JSON.stringify(secondPlayer)} {t("player")}
+      </CardExt>
     </CardContainerStyle>
  )
 }

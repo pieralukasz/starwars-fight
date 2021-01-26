@@ -1,9 +1,13 @@
 import React from 'react'
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 
 export const Navigation: React.FC = () => {
-  return (<NavigationStyle>the starwars game</NavigationStyle>)
+
+  const { t } = useTranslation()
+
+  return (<NavigationStyle>{t("starwars_title")}</NavigationStyle>)
 }
 
 const NavigationStyle = styled.nav`

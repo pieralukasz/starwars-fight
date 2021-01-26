@@ -1,34 +1,44 @@
 import React from "react";
 import { Card } from "@material-ui/core";
 import styled from "styled-components";
-import { useTranslation } from 'react-i18next';
+import {CirclePoints} from "./CirclePoints";
 
 type CardExtProps = {
   isActive: boolean
+  position: string
 }
 
-export const CardExt: React.FC<CardExtProps> = ({isActive, children}) => {
-
-  const { t } = useTranslation()
-
+export const CardExt: React.FC<CardExtProps> = ({isActive, position, children}) => {
   return  (
+
+    // name: string,
+    // height: string,
+    // mass: string | number,
+    // homeworld: string,
     <CardExtStyle>
-      { children }
-      {t("name")}
+
+      <div>{ children }</div>
       { isActive ? <QuestionMark>?</QuestionMark> : ""}
+      <CirclePoints position={ position }>
+        5
+      </CirclePoints>
     </CardExtStyle>
   )
 }
 
 const CardExtStyle = styled(Card)`
-  height: 350px;
+  min-height: 350px;
+  max-height: 350px;
   min-width: 350px;
+  max-width: 350px;
   background-color: rgba(206, 206, 206, 0.6) !important;
   padding: 1rem;
   transition: .3s;
   font-size: 2rem;
   text-align: center;
   position: relative;
+  overflow: visible !important;
+  color: white !important;
 
 
   @media (max-width: 1200px) {
@@ -55,3 +65,6 @@ const QuestionMark = styled.p`
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 `
+
+
+

@@ -6,31 +6,27 @@ interface BaseButtonType {
   fontColor: string
   percent: number
   position: string
-  click?: void
+  action?: any | void
 }
 
 export const BaseButton: React.FC<BaseButtonType> = (props) => {
+
+
   return (
     <BaseButtonStyle
       backgroundColor={ props.backgroundColor }
       fontColor={ props.fontColor }
       position={ props.position }
       percent={ props.percent }
-      onClick={ () => props.click }
+      onClick={ props.action }
     >
       { props.children }
     </BaseButtonStyle>
   )
 }
 
-interface BaseButtonStyleType {
-  backgroundColor: string
-  fontColor: string
-  percent: number
-  position: string
-}
 
-export const BaseButtonStyle = styled.button<BaseButtonStyleType> `
+export const BaseButtonStyle = styled.button<BaseButtonType> `
 
   ${(p) => p.position === 'left' && `
     left: ${p.percent}%;
