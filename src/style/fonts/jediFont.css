@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "JediFont";
+    src: local("JediFont"),
+    url("Starjedi.ttf") format("truetype");
+    font-weight: normal;
+}
+
+body {
+    font-family: JediFont, serif;
+    letter-spacing: 0.125rem;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { RouteConfig, RouteConfigComponentProps } from "react-router-config";
-import DashboardView from "../views/DashboardView";
+import {Dashboard} from "../views/Dashboard/Dashboard";
 
 export interface Config extends RouteConfig {
   component:
@@ -11,13 +11,13 @@ export interface Config extends RouteConfig {
 const ROUTES: Config[] = [
   {
     path: "/",
-    key: "ROOT",
+    key: "MAIN",
     exact: true,
-    component: DashboardView
+    component: Dashboard
   },
   {
     path: "/stats",
-    key: "STAT",
+    key: "STATS",
     exact: false,
     component: () => <div>SHITIIITITIT</div>
   },
