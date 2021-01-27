@@ -8,7 +8,6 @@ import {
   StarwarsPeopleMass,
   StarwarsStarshipCrew
 } from "../actions/StarwarsActionsType";
-import {GetTwoStarwarsPlayer} from "../actions/StarwarsActions";
 
 interface DefaultStateType {
   loading: boolean,

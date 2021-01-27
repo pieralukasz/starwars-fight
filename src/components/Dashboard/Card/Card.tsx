@@ -1,9 +1,13 @@
 import React, { useEffect, useState} from "react";
 import {Card} from "@material-ui/core";
+import { Select, MenuItem } from '@material-ui/core';
 import {CirclePoints} from "./CirclePoints";
 import styled from "styled-components";
 import {StarwarsPeopleMass, StarwarsRequestEnum, StarwarsStarshipCrew} from "../../../actions/StarwarsActionsType";
 import {CardItemInside} from "./CardItemInside";
+import {useDispatch, useSelector} from "react-redux";
+import {RootStoreType} from "../../../store";
+import {setActiveSelect} from "../../../actions/SelectActions";
 
 
 type CardExtProps = {
@@ -16,7 +20,31 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
 
   const { player } = props
 
-  const [ playerDefault, setPlayerDefault ] = useState<StarwarsRequestEnum>(StarwarsRequestEnum.PEOPLE)
+  const dispatch = useDispatch()
+
+  const [playerDefault, setPlayerDefault] = useState<StarwarsRequestEnum>(StarwarsRequestEnum.PEOPLE)
+
+  const [firstSelect, setFirstSelect] = useState('all')
+
+  const [secondSelect, setSecondSelect] = useState('all')
+
+  const selectState = useSelector((state: RootStoreType) => state.select)
+
+  useEffect(() => {
+    console.log('wywoluje sie')
+      if (selectState.firstSelect !== undefined) {
+        setFirstSelect(selectState.firstSelect)
+      }
+      if (selectState.secondSelect !== undefined) {
+        setSecondSelect(selectState.secondSelect)
+      }
+  }, [selectState.firstSelect, selectState.secondSelect])
+
+  const updateValue = (e: object | any): void => {
+    const { value, name } = e.target
+    console.log('elo')
+    dispatch(setActiveSelect({value, select: name}))
+  }
 
   const isPeople = (): boolean => {
     return playerDefault === StarwarsRequestEnum.PEOPLE
@@ -37,27 +65,37 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
 
   }, [player])
 
-
-  return  (
+  return (
     <CardExtStyle>
-      { player ? <InfoInside>
+      {player ? <InfoInside>
         <div>
-          <CardItemInside title={'Type'} description={isPeople() ? 'people' : 'starship'} />
+          <CardItemInside title={'Type'} description={isPeople() ? 'people' : 'starship'}/>
         </div>
         <div>
           <CardItemInside
             title='Name'
-            description={ player?.name }
+            description={player?.name}
           />
         </div>
         <div>
           <CardItemInside
-            title={ isPeople() ? 'mass' : 'crew' }
-            description={ isPeople() ? checkIfUnknown(player?.mass) : checkIfUnknown(player?.crew) }
+            title={isPeople() ? 'mass' : 'crew'}
+            description={isPeople() ? checkIfUnknown(player?.mass) : checkIfUnknown(player?.crew)}
           />
         </div>
       </InfoInside> : <QuestionMark>?</QuestionMark>}
-      <CirclePoints position={ props.position }>
+      {props.position === 'left' ?
+        <SelectExpLeft name={'left'} value={firstSelect} onChange={updateValue}>
+          <MenuItemExp value={'all'}>ALL</MenuItemExp>
+          <MenuItemExp value={'people'}>people</MenuItemExp>
+          <MenuItemExp value={'starships'}>starships</MenuItemExp>
+        </SelectExpLeft> :
+        <SelectExpRight name={'right'} value={secondSelect} onChange={updateValue}>
+          <MenuItemExp value={'all'}>ALL</MenuItemExp>
+          <MenuItemExp value={'people'}>people</MenuItemExp>
+          <MenuItemExp value={'starships'}>starships</MenuItemExp>
+        </SelectExpRight>}
+      <CirclePoints position={props.position}>
         5
       </CirclePoints>
     </CardExtStyle>
@@ -110,6 +148,31 @@ const InfoInside = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+`
+
+const SelectExpLeft = styled(Select)`
+
+  position: absolute !important;
+  left: 5%;
+  bottom: 2%;
+  font-family: JediFont, serif !important;
+  color: #cecece !important;
+
+`
+
+const SelectExpRight = styled(Select)`
+
+  position: absolute !important;
+  right: 5%;
+  bottom: 2%;
+  font-family: JediFont, serif !important;
+  color: #cecece !important;
+
+`
+
+const MenuItemExp = styled(MenuItem)`
+  font-family: JediFont, serif !important;
+
 `
 
 

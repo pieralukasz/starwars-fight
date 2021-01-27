@@ -30,16 +30,13 @@ export const CardContainer: React.FC = () => {
         isActive={false}
         position={'left'}
         player={firstPlayer}
-      >
-      </CardExt>
+       />
       <VSStyle>vs</VSStyle>
       <CardExt
         isActive={false}
         position={'right'}
         player={secondPlayer}
-      >
-        {JSON.stringify(secondPlayer)} {t("player")}
-      </CardExt>
+      />
     </CardContainerStyle>
  )
 }

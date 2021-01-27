@@ -17,7 +17,6 @@ export const ButtonBottom: React.FC = () => {
   }
 
   useEffect(() => {
-    console.log(starwarsState.message)
     if ((starwarsState.message && starwarsState.message === 'Not found') || starwarsState.message === 'CORS') {
       dispatch(GetTwoStarwarsPlayer())
     }
