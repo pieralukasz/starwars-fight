@@ -77,7 +77,9 @@ export interface StarwarsRequestType {
 
 export interface StarwarsRequestTwoPlayerType {
   firstPlayerType?: string,
-  secondPlayerType?: string
+  secondPlayerType?: string,
+  acceptedPeopleNumber?: number[] | [],
+  acceptedStarshipsNumber?: number[] | []
 }
 
 export type StarwarsDispatchTypes = StarwarsLoading

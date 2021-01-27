@@ -13,18 +13,31 @@ export const ButtonBottom: React.FC = () => {
   const selectState = useSelector((state: RootStoreType) => state.select)
 
   const generateRandomPlayer = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): Promise<any> => {
+
     e.preventDefault()
 
-    const {firstSelect, secondSelect} = selectState
 
-    await dispatch(GetAllResources())
-    await dispatch(GetTwoStarwarsPlayer({firstPlayerType: firstSelect, secondPlayerType: secondSelect}))
+    // first load all data becouse some id is invalid
+    if (!starwarsState.loading) {
+      const {firstSelect, secondSelect} = selectState
+
+      const dispatchData = {
+        firstPlayerType: firstSelect,
+        secondPlayerType: secondSelect,
+        acceptedStarshipsNumber: starwarsState.acceptedNumberStarships,
+        acceptedPeopleNumber: starwarsState.acceptedNumberPeople
+      }
+
+      await dispatch(GetTwoStarwarsPlayer(dispatchData))
+    }
+
+
+
   }
 
   useEffect(() => {
     if ((starwarsState.message && starwarsState.message === 'Not found') || starwarsState.message === 'CORS') {
       const {firstSelect, secondSelect} = selectState
-
 
       dispatch(GetTwoStarwarsPlayer({firstPlayerType: firstSelect, secondPlayerType: secondSelect}))
     }

@@ -9,7 +9,7 @@ import {
   StarwarsRequestType, StarwarsResourceType
 } from "./StarwarsActionsType";
 import axios from "axios";
-import {getNumberFromUrl} from "../../utils/utils";
+import {getNumberFromUrl, getRandomId} from "../../utils/utils";
 
 export const GetAllResources = () => async (dispatch: Dispatch<StarwarsDispatchTypes>) => {
 
@@ -62,6 +62,8 @@ export const GetAllResources = () => async (dispatch: Dispatch<StarwarsDispatchT
       }
     })
 
+    console.log('koniec pobierania')
+
   } catch (e) {
     console.error(e)
   }
@@ -77,28 +79,47 @@ export const GetTwoStarwarsPlayer = (starwars: StarwarsRequestTwoPlayerType) => 
 
     const selected = ['people', 'starships']
 
+    let {firstPlayerType, secondPlayerType, acceptedPeopleNumber, acceptedStarshipsNumber} = starwars
 
-    let {firstPlayerType, secondPlayerType} = starwars
+
 
     const selectedFirstPlayer = firstPlayerType === 'all' ? selected[Math.round(Math.random() * 1)] : firstPlayerType
     const selectedSecondPlayer = secondPlayerType === 'all' ? selected[Math.round(Math.random() * 1)] : secondPlayerType
 
+    let randomIdFirstPlayer = 0
+    let randomIdSecondPlayer = 0
+
+    if (firstPlayerType === 'people') {
+      randomIdFirstPlayer = getRandomId(acceptedPeopleNumber)
+    } else {
+      randomIdFirstPlayer = getRandomId(acceptedStarshipsNumber)
+    }
+
+    if (secondPlayerType === 'people') {
+      randomIdSecondPlayer = getRandomId(acceptedPeopleNumber)
+    } else {
+      randomIdSecondPlayer = getRandomId(acceptedStarshipsNumber)
+    }
 
     const firstPlayer = await
-      axios.get(`${process.env.REACT_APP_STARWARS_API}/${selectedFirstPlayer}/${Math.round(Math.random() * 80) + 1}`)
+      axios.get(`${process.env.REACT_APP_STARWARS_API}/${selectedFirstPlayer}/${randomIdFirstPlayer}`)
       .then( res => res.data )
 
     const secondPlayer = await
-      axios.get(`${process.env.REACT_APP_STARWARS_API}/${selectedSecondPlayer}/${Math.round(Math.random() * 30) + 1}`)
+      axios.get(`${process.env.REACT_APP_STARWARS_API}/${selectedSecondPlayer}/${randomIdSecondPlayer}`)
       .then( res => res.data )
 
     dispatch({
       type: STARWARS_SUCCESS_PLAYERS,
       payload: {
         firstPlayer,
-        secondPlayer
+        secondPlayer,
+        acceptedNumberPeople: acceptedPeopleNumber,
+        acceptedNumberStarships: acceptedStarshipsNumber
       }
     })
+
+
 
   } catch (e) {
 

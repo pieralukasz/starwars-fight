@@ -23,9 +23,7 @@ interface DefaultStateType {
 
 
 const defaultState: DefaultStateType = {
-  loading: false,
-  acceptedNumberStarships: [],
-  acceptedNumberPeople: []
+  loading: false
 };
 
 const starwarsReducer = (state: DefaultStateType = defaultState, action: StarwarsDispatchTypes): DefaultStateType => {
@@ -34,29 +32,40 @@ const starwarsReducer = (state: DefaultStateType = defaultState, action: Starwar
     case STARWARS_FAIL:
       return {
         loading: true,
-        message: action.payload.message.detail
+        message: action.payload.message.detail,
+        acceptedNumberStarships: state.acceptedNumberStarships,
+        acceptedNumberPeople: state.acceptedNumberPeople
       }
     case STARWARS_LOADING:
       return {
-        loading: true
+        loading: true,
+        acceptedNumberStarships: state.acceptedNumberStarships,
+        acceptedNumberPeople: state.acceptedNumberPeople
       }
     case STARWARS_SUCCESS_STARSHIP:
       return {
         loading: false,
-        starship: {...action.payload.starship}
+        starship: {...action.payload.starship},
+        acceptedNumberStarships: state.acceptedNumberStarships,
+        acceptedNumberPeople: state.acceptedNumberPeople
       }
     case STARWARS_SUCCESS_PEOPLE:
       return {
         loading: false,
-        people: {...action.payload.people}
+        people: {...action.payload.people},
+        acceptedNumberStarships: state.acceptedNumberStarships,
+        acceptedNumberPeople: state.acceptedNumberPeople
       }
     case STARWARS_SUCCESS_PLAYERS:
       return {
         loading: false,
         firstPlayer: {...action.payload.firstPlayer},
-        secondPlayer: {...action.payload.secondPlayer}
+        secondPlayer: {...action.payload.secondPlayer},
+        acceptedNumberStarships: state.acceptedNumberStarships,
+        acceptedNumberPeople: state.acceptedNumberPeople
       }
     case STARWARS_RESOURCES:
+      console.log(action.payload.acceptedNumberPeople)
       return {
         loading: false,
         acceptedNumberStarships: action.payload.acceptedNumberStarships,
