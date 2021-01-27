@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 
 interface CirclePointsType {
@@ -6,8 +6,21 @@ interface CirclePointsType {
 }
 
 export const CirclePoints: React.FC<CirclePointsType> = ({position, children}) => {
+
+  const [active, setActive] = useState(false)
+
+  useEffect(() => {
+
+    setActive(true)
+    setTimeout(() => {
+      setActive(false)
+    }, 500)
+
+  }, [children])
+
+
   return (
-    <CirclePointsStyle position={position}>
+    <CirclePointsStyle position={position} className={active ? "active" : ""}>
       { children }
     </CirclePointsStyle>
   )
@@ -35,4 +48,10 @@ const CirclePointsStyle = styled.div<CirclePointsType>`
   align-items: center;
   font-size: 3rem;
   color: black;
-  `
+  transition: 1s;
+
+  &.active {
+    transform: scale(1.50);
+    background-color: #1eb2cd;
+  }
+`

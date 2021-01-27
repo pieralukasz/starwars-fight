@@ -20,7 +20,7 @@ type CardExtProps = {
 
 export const CardExt: React.FC<CardExtProps> = (props) => {
 
-  const { player } = props
+  const { player, points } = props
 
   const dispatch = useDispatch()
 
@@ -31,6 +31,8 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
   const [secondSelect, setSecondSelect] = useState('all')
 
   const selectState = useSelector((state: RootStoreType) => state.select)
+
+
 
   useEffect(() => {
       if (selectState.firstSelect !== undefined) {

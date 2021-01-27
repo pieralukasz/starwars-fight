@@ -2,7 +2,7 @@ import { CardExt } from "./Card";
 import React, { useState, useEffect }  from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { RootStoreType } from "../../../store";
 import {
   StarwarsPeopleMass,
@@ -10,6 +10,7 @@ import {
   StarwarsStarshipCrew
 } from "../../../actions/StarWars/StarwarsActionsType";
 import {checkIfUnknown} from "../../../utils/utils";
+import {setNewPoints} from "../../../actions/Points/PointsAction";
 
 interface PointsType {
   firstPlayer: number | string | undefined
@@ -18,9 +19,12 @@ interface PointsType {
 
 export const CardContainer: React.FC = () => {
 
+  const dispatch = useDispatch()
+
   const { t } = useTranslation()
 
   const starwarsState = useSelector((state: RootStoreType) => state.starwars)
+  const pointsState = useSelector((state: RootStoreType) => state.points)
 
   const [firstPlayer, setFirstPlayer] = useState<StarwarsPeopleMass | StarwarsStarshipCrew | undefined>(undefined)
   const [secondPlayer, setSecondPlayer] = useState<StarwarsPeopleMass | StarwarsStarshipCrew | undefined>(undefined)
@@ -30,10 +34,7 @@ export const CardContainer: React.FC = () => {
     if (starwarsState.firstPlayer && starwarsState.secondPlayer) {
       setFirstPlayer(starwarsState.firstPlayer)
       setSecondPlayer(starwarsState.secondPlayer)
-
       checkWinner()
-
-      console.log(starwarsState.secondPlayer)
     }
 
 
@@ -53,30 +54,37 @@ export const CardContainer: React.FC = () => {
 
 
     if (firstPoints > secondPoints) {
-      console.log('wygrywa 1')
-    } else if (firstPoints === secondPoints) {
-      console.log('remis')
+      dispatch(setNewPoints({
+        firstPlayerWin: true,
+        secondPlayerWin: false
+      }))
+    } else if (firstPoints < secondPoints) {
+      dispatch(setNewPoints({
+        firstPlayerWin: false,
+        secondPlayerWin: true
+      }))
     } else {
-      console.log('wygrywa 2')
+      dispatch(setNewPoints({
+        firstPlayerWin: false,
+        secondPlayerWin: false
+      }))
     }
   }
-
-
 
   return (
     <CardContainerStyle>
       <CardExt
         isActive={false}
         position={'left'}
-        player={firstPlayer}
-        points={0}
+        player={ firstPlayer }
+        points={ pointsState.firstSelect }
        />
       <VSStyle>vs</VSStyle>
       <CardExt
         isActive={false}
         position={'right'}
-        player={secondPlayer}
-        points={0}
+        player={ secondPlayer }
+        points={ pointsState.secondSelect }
       />
     </CardContainerStyle>
  )

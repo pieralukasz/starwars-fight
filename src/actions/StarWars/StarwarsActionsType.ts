@@ -30,8 +30,6 @@ export interface StarwarsLoading {
   type: typeof STARWARS_LOADING
 }
 
-
-
 export interface StarwarsResources {
   type: typeof STARWARS_RESOURCES,
   payload: {
