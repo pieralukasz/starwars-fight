@@ -99,6 +99,13 @@ const BackgroundStyle = styled.div`
   z-index: 10;
   background: #000;
 
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    position: inherit;
+  }
+
 `
 
 const ChildrenStyle = styled.div`

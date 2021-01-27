@@ -8,6 +8,7 @@ import {LangPicker} from "./components/Lang";
 import './i18n'
 import {useDispatch} from "react-redux";
 import {GetAllResources} from "./actions/StarWars/StarwarsActions";
+import {getRandomUuid} from './utils/utils'
 
 
 const App: React.FC = () => {
@@ -16,7 +17,15 @@ const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(GetAllResources())
+    setFirstUuid()
   })
+
+  // fake auth for database
+  const setFirstUuid = () => {
+    if (!localStorage.getItem('swapi-uuid')) {
+      localStorage.setItem('swapi-uuid', getRandomUuid())
+    }
+  }
 
   return (
     <Background>

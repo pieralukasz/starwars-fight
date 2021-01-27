@@ -20,7 +20,7 @@ type CardExtProps = {
 
 export const CardExt: React.FC<CardExtProps> = (props) => {
 
-  const { player, points } = props
+  const { player } = props
 
   const dispatch = useDispatch()
 
@@ -115,7 +115,16 @@ const CardExtStyle = styled(Card)`
 
   @media (max-width: 1200px) {
     max-height: 300px;
+    min-height: 300px;
+    max-width: 300px;
     min-width: 300px;
+  }
+
+  @media (max-width: 900px) {
+    max-height: 200px;
+    min-height: 200px;
+    max-width: 200px;
+    min-width: 200px;
   }
 
 `
@@ -136,6 +145,14 @@ const QuestionMark = styled.p`
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+
+  @media (max-width: 1200px) {
+    font-size: 11rem;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 8rem;
+  }
 `
 
 const InfoInside = styled.div`

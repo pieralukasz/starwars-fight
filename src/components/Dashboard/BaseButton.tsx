@@ -63,5 +63,37 @@ export const BaseButtonStyle = styled.button<BaseButtonType> `
     outline: 0;
   }
 
+  @media (max-width: 1200px) {
+    font-size: 1.5rem;
+    padding: 0.75rem;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    transform: translateX(0);
+
+    ${(p) => p.position === 'right' && `
+    right: 10%;
+  `}
+    ${(p) => p.position === 'left' && `
+    left: 10%;
+  `}
+  }
+
+  @media (max-width: 650px) {
+    font-size: 1rem;
+    padding: 0.35rem;
+    transform: translateX(0);
+
+    ${(p) => p.position === 'right' && `
+    right: 5%;
+    bottom: 4.85%;
+  `}
+    ${(p) => p.position === 'left' && `
+    left: 5%;
+  `}
+  }
+
 
 `

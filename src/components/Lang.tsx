@@ -54,4 +54,11 @@ const FlagIconStyle = styled.button`
     width: 100%;
     border: 2px solid white;
   }
+
+  @media (max-width: 700px) {
+    left: 50%;
+    bottom: 2%;
+    top: auto;
+    transform: translateX(-50%);
+  }
 `

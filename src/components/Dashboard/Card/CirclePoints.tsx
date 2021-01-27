@@ -54,4 +54,25 @@ const CirclePointsStyle = styled.div<CirclePointsType>`
     transform: scale(1.50);
     background-color: #1eb2cd;
   }
+
+  @media (max-width: 1200px) {
+    width: 100px;
+    height: 100px;
+    font-size: 2rem;
+  }
+
+  @media (max-width: 900px) {
+
+    ${(p) => p.position === 'left' && `
+    right: -20px;
+  `}
+
+    ${(p) => p.position === 'right' && `
+    left: -20px;
+  `}
+    bottom: -20px;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
 `

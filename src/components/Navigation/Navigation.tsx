@@ -17,4 +17,10 @@ const NavigationStyle = styled.nav`
   text-align: center;
   font-size: 2rem;
   margin-top: 2rem;
+
+  @media (max-width: 700px) {
+    font-size: 1.5rem;
+  }
+
+
 `

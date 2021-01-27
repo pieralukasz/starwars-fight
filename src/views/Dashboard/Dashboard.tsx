@@ -22,4 +22,10 @@ const DashboardContainer = styled.div`
   justify-content: space-between;
   position: relative;
 
+  @media (max-width: 900px) {
+    padding-top: 2rem;
+    width: 100%;
+    margin: 0;
+  }
+
 `

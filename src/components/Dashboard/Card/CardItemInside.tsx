@@ -27,9 +27,17 @@ export const CardItemInside: React.FC<CardItemInsideType> = ({title, description
 const Title = styled.div`
   color: #cecece;
   font-size: 1.5rem;
+
+  @media (max-width: 1200px) {
+    font-size: 1.35rem;
+  }
 `
 
 const Description = styled.div`
   color: white;
   font-size: 2rem;
+
+  @media (max-width: 1200px) {
+    font-size: 1.45rem;
+  }
 `

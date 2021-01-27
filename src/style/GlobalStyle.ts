@@ -1,9 +1,6 @@
 import {createGlobalStyle} from "styled-components";
 
 export default createGlobalStyle`
-  body {
-    color: red;
-  }
 
   .no_selection {
     -webkit-touch-callout: none; /* iOS Safari */
