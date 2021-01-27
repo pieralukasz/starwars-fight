@@ -1,4 +1,4 @@
-import {DispatchChangeSelectType} from "../actions/SelectActionsType";
+import {DispatchChangeSelectType} from "../actions/Select/SelectActionsType";
 
 interface DefaultStateType {
   firstSelect?: string,

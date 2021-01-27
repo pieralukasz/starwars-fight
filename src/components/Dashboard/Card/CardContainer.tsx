@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { RootStoreType } from "../../../store";
-import { StarwarsPeopleMass, StarwarsStarshipCrew } from "../../../actions/StarwarsActionsType";
+import { StarwarsPeopleMass, StarwarsStarshipCrew } from "../../../actions/StarWars/StarwarsActionsType";
 
 
 export const CardContainer: React.FC = () => {

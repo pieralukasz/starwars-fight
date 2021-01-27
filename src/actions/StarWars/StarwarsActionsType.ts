@@ -3,6 +3,7 @@ export const STARWARS_FAIL = "STARWARS_FAIL"
 export const STARWARS_SUCCESS_PEOPLE = "STARWARS_SUCCESS_PEOPLE"
 export const STARWARS_SUCCESS_STARSHIP = "STARWARS_SUCCESS_STARSHIP"
 export const STARWARS_SUCCESS_PLAYERS = "STARWARS_SUCCESS_PLAYERS"
+export const STARWARS_RESOURCES = 'STARWARS_RESOURCES'
 
 export type StarwarsPeopleMass = {
   name: string,
@@ -16,6 +17,10 @@ export type StarwarsStarshipCrew = {
   crew: string | number
 }
 
+export type StarwarsResourceType = {
+  url: string
+}
+
 export enum StarwarsRequestEnum {
   STARSHIPS = 'starships',
   PEOPLE = 'people'
@@ -24,6 +29,17 @@ export enum StarwarsRequestEnum {
 export interface StarwarsLoading {
   type: typeof STARWARS_LOADING
 }
+
+
+
+export interface StarwarsResources {
+  type: typeof STARWARS_RESOURCES,
+  payload: {
+    acceptedNumberStarships: number[] | [] | undefined,
+    acceptedNumberPeople: number[] | [] | undefined
+  }
+}
+
 
 export interface StarwarsFail {
   type: typeof STARWARS_FAIL
@@ -59,8 +75,14 @@ export interface StarwarsRequestType {
   id: number
 }
 
+export interface StarwarsRequestTwoPlayerType {
+  firstPlayerType?: string,
+  secondPlayerType?: string
+}
+
 export type StarwarsDispatchTypes = StarwarsLoading
   | StarwarsFail
   | StarwarsSuccessStarship
   | StarwarsSuccessPeople
   | StarwarsSuccessPlayers
+  | StarwarsResources

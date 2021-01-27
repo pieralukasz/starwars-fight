@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {BaseButton} from "../BaseButton";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {GetTwoStarwarsPlayer} from "../../../actions/StarwarsActions";
+import {GetAllResources, GetTwoStarwarsPlayer} from "../../../actions/StarWars/StarwarsActions";
 import {RootStoreType} from "../../../store";
 
 export const ButtonBottom: React.FC = () => {
@@ -10,15 +10,23 @@ export const ButtonBottom: React.FC = () => {
   const dispatch = useDispatch()
 
   const starwarsState = useSelector((state: RootStoreType) => state.starwars)
+  const selectState = useSelector((state: RootStoreType) => state.select)
 
   const generateRandomPlayer = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): Promise<any> => {
     e.preventDefault()
-    await dispatch(GetTwoStarwarsPlayer())
+
+    const {firstSelect, secondSelect} = selectState
+
+    await dispatch(GetAllResources())
+    await dispatch(GetTwoStarwarsPlayer({firstPlayerType: firstSelect, secondPlayerType: secondSelect}))
   }
 
   useEffect(() => {
     if ((starwarsState.message && starwarsState.message === 'Not found') || starwarsState.message === 'CORS') {
-      dispatch(GetTwoStarwarsPlayer())
+      const {firstSelect, secondSelect} = selectState
+
+
+      dispatch(GetTwoStarwarsPlayer({firstPlayerType: firstSelect, secondPlayerType: secondSelect}))
     }
   }, [starwarsState])
 

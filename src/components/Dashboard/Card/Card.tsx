@@ -3,11 +3,11 @@ import {Card} from "@material-ui/core";
 import { Select, MenuItem } from '@material-ui/core';
 import {CirclePoints} from "./CirclePoints";
 import styled from "styled-components";
-import {StarwarsPeopleMass, StarwarsRequestEnum, StarwarsStarshipCrew} from "../../../actions/StarwarsActionsType";
+import {StarwarsPeopleMass, StarwarsRequestEnum, StarwarsStarshipCrew} from "../../../actions/StarWars/StarwarsActionsType";
 import {CardItemInside} from "./CardItemInside";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStoreType} from "../../../store";
-import {setActiveSelect} from "../../../actions/SelectActions";
+import {setActiveSelect} from "../../../actions/Select/SelectActions";
 
 
 type CardExtProps = {
@@ -31,7 +31,6 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
   const selectState = useSelector((state: RootStoreType) => state.select)
 
   useEffect(() => {
-    console.log('wywoluje sie')
       if (selectState.firstSelect !== undefined) {
         setFirstSelect(selectState.firstSelect)
       }
