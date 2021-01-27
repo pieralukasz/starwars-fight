@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {BaseButton} from "../BaseButton";
-import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import { GetTwoStarwarsPlayer } from "../../../actions/StarWars/StarwarsActions";
 import {RootStoreType} from "../../../store";
@@ -34,14 +33,14 @@ export const ButtonBottom: React.FC = () => {
       }
 
       try {
-        await dispatch(GetTwoStarwarsPlayer(dispatchData))
         setBlockButton(true)
+        await dispatch(GetTwoStarwarsPlayer(dispatchData))
       } catch (e) {
         console.log(e)
       } finally {
         setTimeout(() => {
           setBlockButton(false)
-        }, 1000)
+        }, 800)
       }
     }
 
@@ -60,7 +59,7 @@ export const ButtonBottom: React.FC = () => {
       <BaseButton
         backgroundColor={'#e74c3c'}
         fontColor={'white'}
-        percent={5}
+        percent={20}
         position={'left'}
         action={ResetAllPoints}>
         reset
@@ -68,23 +67,23 @@ export const ButtonBottom: React.FC = () => {
       <BaseButton
         fontColor={'black'}
         backgroundColor={'yellow'}
-        position={'left'}
-        percent={50}
+        position={'right'}
+        percent={35}
         action={generateRandomPlayer}
         disabled={blockButton}
       >
         generate random players
       </BaseButton>
-      <Link to={'/stats'}>
-        <BaseButton
-          fontColor={'white'}
-          backgroundColor={'#8B1FA7'}
-          position={'right'}
-          percent={-6}
-        >
-          history
-        </BaseButton>
-      </Link>
+      {/*<Link to={'/stats'}>*/}
+      {/*  <BaseButton*/}
+      {/*    fontColor={'white'}*/}
+      {/*    backgroundColor={'#8B1FA7'}*/}
+      {/*    position={'right'}*/}
+      {/*    percent={-6}*/}
+      {/*  >*/}
+      {/*    history*/}
+      {/*  </BaseButton>*/}
+      {/*</Link>*/}
     </>
   )
 }

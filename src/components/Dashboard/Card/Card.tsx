@@ -18,6 +18,12 @@ type CardExtProps = {
   points: number | string | undefined
 }
 
+enum SelectEnum{
+  ALL = 'all',
+  PEOPLE = 'people',
+  STARSHIPS = 'starships'
+}
+
 export const CardExt: React.FC<CardExtProps> = (props) => {
 
   const { player } = props
@@ -31,8 +37,6 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
   const [secondSelect, setSecondSelect] = useState('all')
 
   const selectState = useSelector((state: RootStoreType) => state.select)
-
-
 
   useEffect(() => {
       if (selectState.firstSelect !== undefined) {
@@ -82,14 +86,14 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
       </InfoInside> : <QuestionMark>?</QuestionMark>}
       {props.position === 'left' ?
         <SelectExpLeft name={'left'} value={firstSelect} onChange={updateValue}>
-          <MenuItemExp value={'all'}>ALL</MenuItemExp>
-          <MenuItemExp value={'people'}>people</MenuItemExp>
-          <MenuItemExp value={'starships'}>starships</MenuItemExp>
+          <MenuItemExp value={SelectEnum.ALL}>ALL</MenuItemExp>
+          <MenuItemExp value={SelectEnum.PEOPLE}>people</MenuItemExp>
+          <MenuItemExp value={SelectEnum.STARSHIPS}>starships</MenuItemExp>
         </SelectExpLeft> :
         <SelectExpRight name={'right'} value={secondSelect} onChange={updateValue}>
-          <MenuItemExp value={'all'}>ALL</MenuItemExp>
-          <MenuItemExp value={'people'}>people</MenuItemExp>
-          <MenuItemExp value={'starships'}>starships</MenuItemExp>
+          <MenuItemExp value={SelectEnum.ALL}>ALL</MenuItemExp>
+          <MenuItemExp value={SelectEnum.PEOPLE}>people</MenuItemExp>
+          <MenuItemExp value={SelectEnum.STARSHIPS}>starships</MenuItemExp>
         </SelectExpRight>}
       <CirclePoints position={props.position}>
         {props.points}

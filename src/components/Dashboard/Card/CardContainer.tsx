@@ -73,6 +73,16 @@ export const CardContainer: React.FC = () => {
     }
   }, [dispatch, starwarsState.firstPlayer, starwarsState.secondPlayer]);
 
+
+  // clear players when points reset
+  useEffect(() => {
+    if (pointsState.firstSelect === 0 && pointsState.secondSelect === 0) {
+      setFirstPlayer(undefined)
+      setSecondPlayer(undefined)
+    }
+  }, [pointsState])
+
+  // initial effect of players and later games
   useEffect(() => {
     if (starwarsState.firstPlayer && starwarsState.secondPlayer) {
       setFirstPlayer(starwarsState.firstPlayer);

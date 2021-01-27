@@ -36,10 +36,10 @@ export const BaseButtonStyle = styled.button<BaseButtonType> `
 
   ${(p) => p.position === 'right' && `
     right: ${p.percent}%;
+    transform: translateX(50%);
   `}
 
   position: absolute;
-  transform: translateX(-50%);
   bottom: 5%;
   background-color: ${p => p.backgroundColor};
   color: ${p => p.fontColor};

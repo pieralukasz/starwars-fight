@@ -16,6 +16,8 @@ const ROUTES: Config[] = [
     exact: true,
     component: Dashboard
   },
+
+  // maybe use later
   {
     path: "/stats",
     key: "STATS",
