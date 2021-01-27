@@ -7,6 +7,7 @@ interface BaseButtonType {
   percent: number
   position: string
   action?: any | void
+  disabled?: boolean
 }
 
 export const BaseButton: React.FC<BaseButtonType> = (props) => {
@@ -19,6 +20,7 @@ export const BaseButton: React.FC<BaseButtonType> = (props) => {
       position={ props.position }
       percent={ props.percent }
       onClick={ props.action }
+      disabled={ props.disabled }
     >
       { props.children }
     </BaseButtonStyle>

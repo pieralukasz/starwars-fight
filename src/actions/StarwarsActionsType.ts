@@ -6,15 +6,13 @@ export const STARWARS_SUCCESS_PLAYERS = "STARWARS_SUCCESS_PLAYERS"
 
 export type StarwarsPeopleMass = {
   name: string,
-  height: string,
   mass: string | number,
-  homeworld: string,
+  crew: undefined
 }
 
 export type StarwarsStarshipCrew = {
   name: string,
-  model: string,
-  manufacturer: string,
+  mass: undefined
   crew: string | number
 }
 
@@ -29,6 +27,9 @@ export interface StarwarsLoading {
 
 export interface StarwarsFail {
   type: typeof STARWARS_FAIL
+  payload: {
+    message: any
+  }
 }
 
 export interface StarwarsSuccessPeople {

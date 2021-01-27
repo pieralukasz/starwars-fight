@@ -8,13 +8,15 @@ import {
   StarwarsPeopleMass,
   StarwarsStarshipCrew
 } from "../actions/StarwarsActionsType";
+import {GetTwoStarwarsPlayer} from "../actions/StarwarsActions";
 
 interface DefaultStateType {
   loading: boolean,
   starship?: StarwarsStarshipCrew,
   people?: StarwarsPeopleMass,
   firstPlayer?: StarwarsStarshipCrew | StarwarsPeopleMass,
-  secondPlayer?: StarwarsStarshipCrew | StarwarsPeopleMass
+  secondPlayer?: StarwarsStarshipCrew | StarwarsPeopleMass,
+  message?: string
 }
 
 
@@ -27,7 +29,8 @@ const starwarsReducer = (state: DefaultStateType = defaultState, action: Starwar
   switch (action.type) {
     case STARWARS_FAIL:
       return {
-        loading: false
+        loading: true,
+        message: action.payload.message.detail
       }
     case STARWARS_LOADING:
       return {

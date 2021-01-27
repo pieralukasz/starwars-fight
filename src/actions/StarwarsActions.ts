@@ -39,15 +39,21 @@ export const GetStarwars = (starwars: StarwarsRequestType) => async (dispatch: D
     }
 
   } catch (e) {
+
     dispatch({
-      type: STARWARS_FAIL
+      type: STARWARS_FAIL,
+      payload: {
+        message: e.message
+      }
     })
-    console.error(e.message)
+    console.error(e.body)
   }
 }
 
 
 export const GetTwoStarwarsPlayer = () => async (dispatch: Dispatch<StarwarsDispatchTypes>) => {
+
+  console.log('lecimy znowu')
 
   try {
     dispatch({
@@ -55,11 +61,11 @@ export const GetTwoStarwarsPlayer = () => async (dispatch: Dispatch<StarwarsDisp
     })
 
     const firstPlayer = await
-      axios.get(`${process.env.REACT_APP_STARWARS_API}/${'people'}/${Math.round(Math.random() * 20)}`)
+      axios.get(`${process.env.REACT_APP_STARWARS_API}/${'people'}/${Math.round(Math.random() * 80) + 1}`)
       .then( res => res.data )
 
     const secondPlayer = await
-      axios.get(`${process.env.REACT_APP_STARWARS_API}/${'people'}/${Math.round(Math.random() * 20)}`)
+      axios.get(`${process.env.REACT_APP_STARWARS_API}/${'starships'}/${Math.round(Math.random() * 30) + 1}`)
       .then( res => res.data )
 
     dispatch({
@@ -71,10 +77,15 @@ export const GetTwoStarwarsPlayer = () => async (dispatch: Dispatch<StarwarsDisp
     })
 
   } catch (e) {
+
+    console.log(e)
+
     dispatch({
-      type: STARWARS_FAIL
+      type: STARWARS_FAIL,
+      payload: {
+        message: e.response ? e.response.data : 'CORS'
+      }
     })
-    console.error(e.message)
   }
 
 }

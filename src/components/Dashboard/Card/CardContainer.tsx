@@ -1,13 +1,10 @@
-import {CardExt} from "./Card";
+import { CardExt } from "./Card";
 import React, { useState, useEffect }  from "react";
 import styled from "styled-components";
-// import {useDispatch, useSelector} from "react-redux";
-// import {RootStoreType} from "../../../store";
-// import {GetTwoStarwarsPlayer} from "../../../actions/StarwarsActions";
-import {useTranslation} from "react-i18next";
-import {useSelector} from "react-redux";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { RootStoreType } from "../../../store";
-import {StarwarsPeopleMass, StarwarsStarshipCrew} from "../../../actions/StarwarsActionsType";
+import { StarwarsPeopleMass, StarwarsStarshipCrew } from "../../../actions/StarwarsActionsType";
 
 
 export const CardContainer: React.FC = () => {
@@ -32,15 +29,14 @@ export const CardContainer: React.FC = () => {
       <CardExt
         isActive={false}
         position={'left'}
+        player={firstPlayer}
       >
-        <div>Name: </div>
-        <div>{firstPlayer ? firstPlayer.name : ""}</div>
-        <div>Height: </div> {t("player")}
       </CardExt>
       <VSStyle>vs</VSStyle>
       <CardExt
         isActive={false}
         position={'right'}
+        player={secondPlayer}
       >
         {JSON.stringify(secondPlayer)} {t("player")}
       </CardExt>
