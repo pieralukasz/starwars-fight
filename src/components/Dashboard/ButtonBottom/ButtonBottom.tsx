@@ -1,9 +1,10 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {BaseButton} from "../BaseButton";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import { GetTwoStarwarsPlayer } from "../../../actions/StarWars/StarwarsActions";
 import {RootStoreType} from "../../../store";
+import {resetAllPoints} from "../../../actions/Points/PointsAction";
 
 export const ButtonBottom: React.FC = () => {
 
@@ -11,11 +12,15 @@ export const ButtonBottom: React.FC = () => {
 
   const starwarsState = useSelector((state: RootStoreType) => state.starwars)
   const selectState = useSelector((state: RootStoreType) => state.select)
+  const [blockButton, setBlockButton] = useState(false)
+
+  const ResetAllPoints = () => {
+    dispatch(resetAllPoints())
+  }
 
   const generateRandomPlayer = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): Promise<any> => {
 
     e.preventDefault()
-
 
     // first load all data becouse some id is invalid
     if (!starwarsState.loading) {
@@ -28,10 +33,17 @@ export const ButtonBottom: React.FC = () => {
         acceptedPeopleNumber: starwarsState.acceptedNumberPeople
       }
 
-      await dispatch(GetTwoStarwarsPlayer(dispatchData))
+      try {
+        await dispatch(GetTwoStarwarsPlayer(dispatchData))
+        setBlockButton(true)
+      } catch (e) {
+        console.log(e)
+      } finally {
+        setTimeout(() => {
+          setBlockButton(false)
+        }, 1000)
+      }
     }
-
-
 
   }
 
@@ -46,12 +58,20 @@ export const ButtonBottom: React.FC = () => {
   return (
     <>
       <BaseButton
+        backgroundColor={'#e74c3c'}
+        fontColor={'white'}
+        percent={5}
+        position={'left'}
+        action={ResetAllPoints}>
+        reset
+      </BaseButton>
+      <BaseButton
         fontColor={'black'}
         backgroundColor={'yellow'}
         position={'left'}
         percent={50}
         action={generateRandomPlayer}
-        disabled={starwarsState.loading}
+        disabled={blockButton}
       >
         generate random players
       </BaseButton>

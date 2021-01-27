@@ -1,4 +1,5 @@
 export const SET_POINTS = "SET_POINTS"
+export const RESET_POINTS = "RESET_POINTS"
 
 export interface PointsType {
   firstPlayerWin: boolean,
@@ -10,4 +11,8 @@ export interface SetPoints {
   payload: PointsType
 }
 
-export type DispatchSetPoints = SetPoints
+export interface ResetPoints {
+  type: typeof RESET_POINTS
+}
+
+export type DispatchSetPoints = SetPoints | ResetPoints

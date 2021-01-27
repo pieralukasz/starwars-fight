@@ -1,17 +1,24 @@
 import {Dispatch} from "redux";
 import {
   STARWARS_FAIL,
-  STARWARS_LOADING, STARWARS_RESOURCES,
+  STARWARS_LOADING,
+  STARWARS_RESOURCES,
   STARWARS_SUCCESS_PEOPLE,
   STARWARS_SUCCESS_PLAYERS,
   STARWARS_SUCCESS_STARSHIP,
-  StarwarsDispatchTypes, StarwarsRequestTwoPlayerType,
-  StarwarsRequestType, StarwarsResourceType
+  StarwarsDispatchTypes,
+  StarwarsRequestTwoPlayerType,
+  StarwarsRequestType,
+  StarwarsResourceType
 } from "./StarwarsActionsType";
 import axios from "axios";
 import {getNumberFromUrl, getRandomId} from "../../utils/utils";
 
 export const GetAllResources = () => async (dispatch: Dispatch<StarwarsDispatchTypes>) => {
+
+  dispatch({
+    type: STARWARS_LOADING
+  })
 
   try {
 

@@ -8,8 +8,6 @@ type CardItemInsideType = {
 
 
 export const CardItemInside: React.FC<CardItemInsideType> = ({title, description}) => {
-
-
   return (
     <>
       <Title>
@@ -31,6 +29,10 @@ const Title = styled.div`
   @media (max-width: 1200px) {
     font-size: 1.35rem;
   }
+
+  @media (max-width: 900px) {
+    font-size: 1.20rem;
+  }
 `
 
 const Description = styled.div`
@@ -39,5 +41,9 @@ const Description = styled.div`
 
   @media (max-width: 1200px) {
     font-size: 1.45rem;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 1.05rem;
   }
 `

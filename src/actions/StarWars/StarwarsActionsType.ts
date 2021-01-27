@@ -38,7 +38,6 @@ export interface StarwarsResources {
   }
 }
 
-
 export interface StarwarsFail {
   type: typeof STARWARS_FAIL
   payload: {
