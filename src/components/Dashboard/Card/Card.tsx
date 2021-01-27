@@ -8,12 +8,14 @@ import {CardItemInside} from "./CardItemInside";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStoreType} from "../../../store";
 import {setActiveSelect} from "../../../actions/Select/SelectActions";
+import {checkIfUnknown} from "../../../utils/utils";
 
 
 type CardExtProps = {
   isActive: boolean
   position: string
-  player: StarwarsPeopleMass | StarwarsStarshipCrew | undefined
+  player: StarwarsPeopleMass | StarwarsStarshipCrew | undefined,
+  points: number | string | undefined
 }
 
 export const CardExt: React.FC<CardExtProps> = (props) => {
@@ -41,19 +43,12 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
 
   const updateValue = (e: object | any): void => {
     const { value, name } = e.target
-    console.log('elo')
+
     dispatch(setActiveSelect({value, select: name}))
   }
 
   const isPeople = (): boolean => {
     return playerDefault === StarwarsRequestEnum.PEOPLE
-  }
-
-  const checkIfUnknown = (points: string | number | undefined): number => {
-    if (points === 'Unknown' || points === 'unknown' || points === undefined) {
-      return 0
-    }
-    return parseFloat(points.toString())
   }
 
   useEffect(() => {
@@ -95,7 +90,7 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
           <MenuItemExp value={'starships'}>starships</MenuItemExp>
         </SelectExpRight>}
       <CirclePoints position={props.position}>
-        5
+        {props.points}
       </CirclePoints>
     </CardExtStyle>
   )

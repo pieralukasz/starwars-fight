@@ -4,8 +4,17 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { RootStoreType } from "../../../store";
-import { StarwarsPeopleMass, StarwarsStarshipCrew } from "../../../actions/StarWars/StarwarsActionsType";
+import {
+  StarwarsPeopleMass,
+  StarwarsRequestEnum,
+  StarwarsStarshipCrew
+} from "../../../actions/StarWars/StarwarsActionsType";
+import {checkIfUnknown} from "../../../utils/utils";
 
+interface PointsType {
+  firstPlayer: number | string | undefined
+  secondPlayer: number | string | undefined
+}
 
 export const CardContainer: React.FC = () => {
 
@@ -16,12 +25,42 @@ export const CardContainer: React.FC = () => {
   const [firstPlayer, setFirstPlayer] = useState<StarwarsPeopleMass | StarwarsStarshipCrew | undefined>(undefined)
   const [secondPlayer, setSecondPlayer] = useState<StarwarsPeopleMass | StarwarsStarshipCrew | undefined>(undefined)
 
+
   useEffect(() => {
     if (starwarsState.firstPlayer && starwarsState.secondPlayer) {
       setFirstPlayer(starwarsState.firstPlayer)
       setSecondPlayer(starwarsState.secondPlayer)
+
+      checkWinner()
+
+      console.log(starwarsState.secondPlayer)
     }
+
+
   }, [starwarsState])
+
+  const checkWinner = () => {
+    const first = starwarsState.firstPlayer
+    const second = starwarsState.secondPlayer
+    let firstPoints = 0
+    let secondPoints = 0
+
+    const firstCheck = first?.mass ? StarwarsRequestEnum.PEOPLE : StarwarsRequestEnum.STARSHIPS
+    firstPoints = firstCheck === StarwarsRequestEnum.PEOPLE ? checkIfUnknown(first?.mass) : checkIfUnknown(first?.crew)
+
+    const secondCheck = second?.mass ? StarwarsRequestEnum.PEOPLE : StarwarsRequestEnum.STARSHIPS
+    secondPoints = secondCheck === StarwarsRequestEnum.PEOPLE ? checkIfUnknown(second?.mass) : checkIfUnknown(second?.crew)
+
+
+    if (firstPoints > secondPoints) {
+      console.log('wygrywa 1')
+    } else if (firstPoints === secondPoints) {
+      console.log('remis')
+    } else {
+      console.log('wygrywa 2')
+    }
+  }
+
 
 
   return (
@@ -30,12 +69,14 @@ export const CardContainer: React.FC = () => {
         isActive={false}
         position={'left'}
         player={firstPlayer}
+        points={0}
        />
       <VSStyle>vs</VSStyle>
       <CardExt
         isActive={false}
         position={'right'}
         player={secondPlayer}
+        points={0}
       />
     </CardContainerStyle>
  )

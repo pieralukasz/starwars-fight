@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {BaseButton} from "../BaseButton";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {GetAllResources, GetTwoStarwarsPlayer} from "../../../actions/StarWars/StarwarsActions";
+import { GetTwoStarwarsPlayer } from "../../../actions/StarWars/StarwarsActions";
 import {RootStoreType} from "../../../store";
 
 export const ButtonBottom: React.FC = () => {
@@ -41,7 +41,7 @@ export const ButtonBottom: React.FC = () => {
 
       dispatch(GetTwoStarwarsPlayer({firstPlayerType: firstSelect, secondPlayerType: secondSelect}))
     }
-  }, [starwarsState])
+  })
 
   return (
     <>

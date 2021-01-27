@@ -5,13 +5,15 @@ export const getNumberFromUrl = (url: string): number => {
 
 export const getRandomId = (table: number[] | [] | undefined): number => {
   if (table) {
-    const number = table[Math.floor(Math.random() * table.length)]
-    console.log(number)
-
-    return number
-
+    return table[Math.floor(Math.random() * table.length)]
   }
-  console.log(table)
   return 1
+}
 
+
+export const checkIfUnknown = (points: string | number | undefined): number => {
+  if (points === 'Unknown' || points === 'unknown' || points === undefined) {
+    return 0
+  }
+  return parseFloat(points.toString())
 }

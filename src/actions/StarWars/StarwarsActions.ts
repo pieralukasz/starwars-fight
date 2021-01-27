@@ -119,8 +119,6 @@ export const GetTwoStarwarsPlayer = (starwars: StarwarsRequestTwoPlayerType) => 
       }
     })
 
-
-
   } catch (e) {
 
     console.log(e)

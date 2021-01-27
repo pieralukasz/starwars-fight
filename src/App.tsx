@@ -16,7 +16,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(GetAllResources())
-  }, [])
+  })
 
   return (
     <Background>
