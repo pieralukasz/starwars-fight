@@ -8,14 +8,14 @@ type CardItemInsideType = {
 
 export const CardItemInside: React.FC<CardItemInsideType> = ({title, description}) => {
   return (
-    <>
+    <div>
       <Title>
         { title }
       </Title>
       <Description>
         { description }
       </Description>
-    </>
+    </div>
   )
 
 }

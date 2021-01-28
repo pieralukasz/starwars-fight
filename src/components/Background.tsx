@@ -6,9 +6,6 @@ type BackgroundProps = {}
 
 export const Background: React.FC<BackgroundProps> = ({children}) => {
   return (<BackgroundStyle>
-    {/*<div id='stars'  />*/}
-    {/*<div id='stars2' />*/}
-    {/*<div id='stars3' />*/}
     <ChildrenStyle>{ children }</ChildrenStyle>
   </BackgroundStyle>)
 
@@ -22,6 +19,13 @@ const BackgroundStyle = styled.div`
   height: 100vh;
   z-index: 10;
   background: #000;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    position: inherit;
+  }
 
 
   html {

@@ -1,106 +1,117 @@
-import React, { useEffect, useState} from "react";
-import {Card} from "@material-ui/core";
-import { Select, MenuItem } from '@material-ui/core';
-import {CirclePoints} from "./CirclePoints";
+import React, { useEffect, useState } from "react";
+import { Card } from "@material-ui/core";
+import { Select, MenuItem } from "@material-ui/core";
+import { CirclePoints } from "./CirclePoints";
 import styled from "styled-components";
-import {StarwarsPeopleMass, StarwarsRequestEnum, StarwarsStarshipCrew} from "../../../actions/StarWars/StarwarsActionsType";
-import {CardItemInside} from "./CardItemInside";
-import {useDispatch, useSelector} from "react-redux";
-import {RootStoreType} from "../../../store";
-import {setActiveSelect} from "../../../actions/Select/SelectActions";
-import {checkIfUnknown} from "../../../utils/utils";
-
+import {
+  StarwarsPeopleMass,
+  StarwarsRequestEnum,
+  StarwarsStarshipCrew,
+} from "../../../actions/StarWars/StarwarsActionsType";
+import { CardItemInside } from "./CardItemInside";
+import { useDispatch, useSelector } from "react-redux";
+import { RootStoreType } from "../../../store";
+import { setActiveSelect } from "../../../actions/Select/SelectActions";
+import { checkIfUnknown } from "../../../utils/utils";
 
 type CardExtProps = {
-  isActive: boolean
-  position: string
-  player: StarwarsPeopleMass | StarwarsStarshipCrew | undefined,
-  points: number | string | undefined
-}
+  isActive: boolean;
+  position: string;
+  player: StarwarsPeopleMass | StarwarsStarshipCrew | undefined;
+  points: number | string | undefined;
+};
 
-enum SelectEnum{
-  ALL = 'all',
-  PEOPLE = 'people',
-  STARSHIPS = 'starships'
+enum SelectEnum {
+  ALL = "all",
+  PEOPLE = "people",
+  STARSHIPS = "starships",
 }
 
 export const CardExt: React.FC<CardExtProps> = (props) => {
 
-  const { player } = props
+  const { player } = props;
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const [playerDefault, setPlayerDefault] = useState<StarwarsRequestEnum>(StarwarsRequestEnum.PEOPLE)
+  const [playerDefault, setPlayerDefault] = useState<StarwarsRequestEnum>(
+    StarwarsRequestEnum.PEOPLE
+  );
 
-  const [firstSelect, setFirstSelect] = useState('all')
+  const [firstSelect, setFirstSelect] = useState(SelectEnum.ALL as string);
 
-  const [secondSelect, setSecondSelect] = useState('all')
+  const [secondSelect, setSecondSelect] = useState(SelectEnum.ALL as string);
 
-  const selectState = useSelector((state: RootStoreType) => state.select)
+  const selectState = useSelector((state: RootStoreType) => state.select);
 
   useEffect(() => {
-      if (selectState.firstSelect !== undefined) {
-        setFirstSelect(selectState.firstSelect)
-      }
-      if (selectState.secondSelect !== undefined) {
-        setSecondSelect(selectState.secondSelect)
-      }
-  }, [selectState.firstSelect, selectState.secondSelect])
+    if (selectState.firstSelect !== undefined) {
+      setFirstSelect(selectState.firstSelect);
+    }
+    if (selectState.secondSelect !== undefined) {
+      setSecondSelect(selectState.secondSelect);
+    }
+  }, [selectState.firstSelect, selectState.secondSelect]);
 
   const updateValue = (e: object | any): void => {
-    const { value, name } = e.target
+    const { value, name } = e.target;
 
-    dispatch(setActiveSelect({value, select: name}))
-  }
+    dispatch(setActiveSelect({ value, select: name }));
+  };
 
   const isPeople = (): boolean => {
-    return playerDefault === StarwarsRequestEnum.PEOPLE
-  }
+    return playerDefault === StarwarsRequestEnum.PEOPLE;
+  };
 
   useEffect(() => {
+    const check = player?.mass
+      ? StarwarsRequestEnum.PEOPLE
+      : StarwarsRequestEnum.STARSHIPS;
 
-    const check = player?.mass ? StarwarsRequestEnum.PEOPLE : StarwarsRequestEnum.STARSHIPS
-
-    setPlayerDefault(check)
-
-  }, [player])
+    setPlayerDefault(check);
+  }, [player]);
 
   return (
     <CardExtStyle>
-      {player ? <InfoInside>
-        <div>
-          <CardItemInside title={'Type'} description={isPeople() ? 'people' : 'starship'}/>
-        </div>
-        <div>
-          <CardItemInside
-            title='Name'
-            description={player?.name}
-          />
-        </div>
-        <div>
-          <CardItemInside
-            title={isPeople() ? 'mass' : 'crew'}
-            description={isPeople() ? checkIfUnknown(player?.mass) : checkIfUnknown(player?.crew)}
-          />
-        </div>
-      </InfoInside> : <QuestionMark>?</QuestionMark>}
-      {props.position === 'left' ?
-        <SelectExpLeft name={'left'} value={firstSelect} onChange={updateValue}>
+      {player ? (
+        <InfoInside>
+            <CardItemInside
+              title={"Type"}
+              description={isPeople() ? "people" : "starship"}
+            />
+            <CardItemInside title="Name" description={player?.name} />
+            <CardItemInside
+              title={isPeople() ? "mass" : "crew"}
+              description={
+                isPeople()
+                  ? checkIfUnknown(player?.mass)
+                  : checkIfUnknown(player?.crew)
+              }
+            />
+        </InfoInside>
+      ) : (
+        <QuestionMark>?</QuestionMark>
+      )}
+      {props.position === "left" ? (
+        <SelectExpLeft name={"left"} value={firstSelect} onChange={updateValue}>
           <MenuItemExp value={SelectEnum.ALL}>ALL</MenuItemExp>
           <MenuItemExp value={SelectEnum.PEOPLE}>people</MenuItemExp>
           <MenuItemExp value={SelectEnum.STARSHIPS}>starships</MenuItemExp>
-        </SelectExpLeft> :
-        <SelectExpRight name={'right'} value={secondSelect} onChange={updateValue}>
+        </SelectExpLeft>
+      ) : (
+        <SelectExpRight
+          name={"right"}
+          value={secondSelect}
+          onChange={updateValue}
+        >
           <MenuItemExp value={SelectEnum.ALL}>ALL</MenuItemExp>
           <MenuItemExp value={SelectEnum.PEOPLE}>people</MenuItemExp>
           <MenuItemExp value={SelectEnum.STARSHIPS}>starships</MenuItemExp>
-        </SelectExpRight>}
-      <CirclePoints position={props.position}>
-        {props.points}
-      </CirclePoints>
+        </SelectExpRight>
+      )}
+      <CirclePoints position={props.position}>{props.points}</CirclePoints>
     </CardExtStyle>
-  )
-}
+  );
+};
 
 const CardExtStyle = styled(Card)`
   min-height: 350px;
@@ -109,13 +120,12 @@ const CardExtStyle = styled(Card)`
   max-width: 350px;
   background-color: rgba(206, 206, 206, 0.6) !important;
   padding: 1rem;
-  transition: .3s;
+  transition: 0.3s;
   font-size: 2rem;
   text-align: center;
   position: relative;
   overflow: visible !important;
   color: white !important;
-
 
   @media (max-width: 1200px) {
     max-height: 300px;
@@ -130,8 +140,7 @@ const CardExtStyle = styled(Card)`
     max-width: 200px;
     min-width: 200px;
   }
-
-`
+`;
 
 const QuestionMark = styled.p`
   position: absolute;
@@ -157,7 +166,7 @@ const QuestionMark = styled.p`
   @media (max-width: 900px) {
     font-size: 8rem;
   }
-`
+`;
 
 const InfoInside = styled.div`
   width: 100%;
@@ -165,33 +174,24 @@ const InfoInside = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-`
+`;
 
 const SelectExpLeft = styled(Select)`
-
   position: absolute !important;
   left: 5%;
   bottom: 2%;
   font-family: JediFont, serif !important;
   color: #cecece !important;
-
-`
+`;
 
 const SelectExpRight = styled(Select)`
-
   position: absolute !important;
   right: 5%;
   bottom: 2%;
   font-family: JediFont, serif !important;
   color: #cecece !important;
-
-`
+`;
 
 const MenuItemExp = styled(MenuItem)`
   font-family: JediFont, serif !important;
-
-`
-
-
-
-
+`;
