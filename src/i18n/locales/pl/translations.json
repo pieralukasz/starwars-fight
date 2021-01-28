@@ -1,4 +1,14 @@
 {
   "player": "gracz",
-  "starwars_title": "gra starwars"
+  "starwars_title": "gra starwars",
+  "play_button": "wygeneruj losowych graczy",
+  "reset": "resetuj",
+  "all": "wszyscy",
+  "people": "ludzie",
+  "starships": "statki",
+  "mass": "masa",
+  "crew": "zaloga",
+  "type": "Typ",
+  "name_starships": "nazwa",
+  "name_people": "imie"
 }

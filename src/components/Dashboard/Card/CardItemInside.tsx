@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 type CardItemInsideType = {
   title: string,
-  description: string | number | undefined
+  description: any
 }
 
 export const CardItemInside: React.FC<CardItemInsideType> = ({title, description}) => {

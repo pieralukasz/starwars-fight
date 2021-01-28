@@ -4,8 +4,11 @@ import {useDispatch, useSelector} from "react-redux";
 import { GetTwoStarwarsPlayer } from "../../../actions/StarWars/StarwarsActions";
 import {RootStoreType} from "../../../store";
 import {resetAllPoints} from "../../../actions/Points/PointsAction";
+import {useTranslation} from "react-i18next";
 
 export const ButtonBottom: React.FC = () => {
+
+  const { t } = useTranslation()
 
   const dispatch = useDispatch()
 
@@ -36,7 +39,7 @@ export const ButtonBottom: React.FC = () => {
         setBlockButton(true)
         await dispatch(GetTwoStarwarsPlayer(dispatchData))
       } catch (e) {
-        console.log(e)
+        console.error(e)
       } finally {
         setTimeout(() => {
           setBlockButton(false)
@@ -62,7 +65,7 @@ export const ButtonBottom: React.FC = () => {
         percent={21}
         position={'left'}
         action={ResetAllPoints}>
-        reset
+        {t("reset")}
       </BaseButton>
       <BaseButton
         fontColor={'black'}
@@ -72,7 +75,7 @@ export const ButtonBottom: React.FC = () => {
         action={generateRandomPlayer}
         disabled={blockButton}
       >
-        generate random players
+        {t("play_button")}
       </BaseButton>
       {/*<Link to={'/stats'}>*/}
       {/*  <BaseButton*/}

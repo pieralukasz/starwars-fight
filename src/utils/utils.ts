@@ -4,7 +4,7 @@ export const getNumberFromUrl = (url: string): number => {
 
 
 export const getRandomId = (table: number[] | [] | undefined): number => {
-  if (table) {
+  if (table !== undefined && table.length > 0) {
     return table[Math.floor(Math.random() * table.length)]
   }
   return 1

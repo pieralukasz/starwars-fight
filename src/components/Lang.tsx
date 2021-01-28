@@ -24,11 +24,13 @@ export const LangPicker = () => {
     if (lang === "en") {
       setLang("pl");
       i18next.changeLanguage("pl");
+      localStorage.setItem("sw-lang", "pl");
     } else {
       setLang("en");
       i18next.changeLanguage("en");
+      localStorage.setItem("sw-lang", "en");
     }
-    localStorage.setItem("sw-lang", lang);
+
   };
 
   return (

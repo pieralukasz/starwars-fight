@@ -27,7 +27,6 @@ const App: React.FC = () => {
 
   return (
     <Background>
-      <>
         <LangPicker />
         <Router>
           <Navigation />
@@ -37,7 +36,6 @@ const App: React.FC = () => {
             ))}
           </Switch>
         </Router>
-      </>
     </Background>
   );
 };

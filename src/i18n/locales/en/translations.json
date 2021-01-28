@@ -1,4 +1,14 @@
 {
   "player": "player",
-  "starwars_title": "the starwars game"
+  "starwars_title": "the starwars game",
+  "play_button": "generate random players",
+  "reset": "reset",
+  "all": "all",
+  "people": "people",
+  "starships": "starships",
+  "mass": "mass",
+  "crew": "crew",
+  "type": "type",
+  "name_starships": "name",
+  "name_people": "name"
 }

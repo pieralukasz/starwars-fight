@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootStoreType } from "../../../store";
 import { setActiveSelect } from "../../../actions/Select/SelectActions";
 import { checkIfUnknown } from "../../../utils/utils";
-
+import { useTranslation } from "react-i18next";
 
 type CardExtProps = {
   isActive: boolean;
@@ -30,6 +30,7 @@ enum SelectEnum {
 }
 
 export const CardExt: React.FC<CardExtProps> = (props) => {
+  const { t } = useTranslation();
 
   const { player } = props;
 
@@ -74,31 +75,35 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
 
   return (
     <CardExtStyle>
-      <div>HELLLOOO</div>
       {player ? (
         <InfoInside>
-            <CardItemInside
-              title={"Type"}
-              description={isPeople() ? "people" : "starship"}
-            />
-            <CardItemInside title="Name" description={player?.name} />
-            <CardItemInside
-              title={isPeople() ? "mass" : "crew"}
-              description={
-                isPeople()
-                  ? checkIfUnknown(player?.mass)
-                  : checkIfUnknown(player?.crew)
-              }
-            />
+          <CardItemInside
+            title={t("type")}
+            description={isPeople() ? t("people") : t("starships")}
+          />
+          <CardItemInside
+            title={isPeople() ? t("name_people") : t("name_starships")}
+            description={player?.name}
+          />
+          <CardItemInside
+            title={isPeople() ? t("mass") : t("crew")}
+            description={
+              isPeople()
+                ? checkIfUnknown(player?.mass)
+                : checkIfUnknown(player?.crew)
+            }
+          />
         </InfoInside>
       ) : (
         <QuestionMark>?</QuestionMark>
       )}
       {props.position === "left" ? (
         <SelectExpLeft name={"left"} value={firstSelect} onChange={updateValue}>
-          <MenuItemExp value={SelectEnum.ALL}>ALL</MenuItemExp>
-          <MenuItemExp value={SelectEnum.PEOPLE}>people</MenuItemExp>
-          <MenuItemExp value={SelectEnum.STARSHIPS}>starships</MenuItemExp>
+          <MenuItemExp value={SelectEnum.ALL}>{t("all")}</MenuItemExp>
+          <MenuItemExp value={SelectEnum.PEOPLE}>{t("people")}</MenuItemExp>
+          <MenuItemExp value={SelectEnum.STARSHIPS}>
+            {t("starships")}
+          </MenuItemExp>
         </SelectExpLeft>
       ) : (
         <SelectExpRight
@@ -106,9 +111,11 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
           value={secondSelect}
           onChange={updateValue}
         >
-          <MenuItemExp value={SelectEnum.ALL}>ALL</MenuItemExp>
-          <MenuItemExp value={SelectEnum.PEOPLE}>people</MenuItemExp>
-          <MenuItemExp value={SelectEnum.STARSHIPS}>starships</MenuItemExp>
+          <MenuItemExp value={SelectEnum.ALL}>{t("all")}</MenuItemExp>
+          <MenuItemExp value={SelectEnum.PEOPLE}>{t("people")}</MenuItemExp>
+          <MenuItemExp value={SelectEnum.STARSHIPS}>
+            {t("starships")}
+          </MenuItemExp>
         </SelectExpRight>
       )}
       <CirclePoints position={props.position}>{props.points}</CirclePoints>
