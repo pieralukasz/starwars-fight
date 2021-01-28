@@ -59,7 +59,7 @@ export const ButtonBottom: React.FC = () => {
       <BaseButton
         backgroundColor={'#e74c3c'}
         fontColor={'white'}
-        percent={20}
+        percent={21}
         position={'left'}
         action={ResetAllPoints}>
         reset

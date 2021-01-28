@@ -6,7 +6,6 @@ type CardItemInsideType = {
   description: string | number | undefined
 }
 
-
 export const CardItemInside: React.FC<CardItemInsideType> = ({title, description}) => {
   return (
     <>
@@ -17,7 +16,6 @@ export const CardItemInside: React.FC<CardItemInsideType> = ({title, description
         { description }
       </Description>
     </>
-
   )
 
 }

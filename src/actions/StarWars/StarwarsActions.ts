@@ -60,7 +60,7 @@ export const GetAllResources = () => async (dispatch: Dispatch<StarwarsDispatchT
         starships = response.reduce((a, data) => [...a, ...data.data.results], starships)
         return starships.map((x: StarwarsResourceType) => getNumberFromUrl(x.url))
       })
-
+    console.log(starshipsAcceptedNumber)
     dispatch({
       type: STARWARS_RESOURCES,
       payload: {
