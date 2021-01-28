@@ -1,5 +1,8 @@
 import React from "react";
 import App from "../App";
+// @ts-ignore
+import configureMockStore from "redux-mock-store";
+
 import { Provider } from "react-redux";
 import {applyMiddleware, createStore} from "redux";
 import { render } from "@testing-library/react";
@@ -10,7 +13,7 @@ import {shallow} from "enzyme";
 import {Background} from "../components/Background";
 import {GetAllResources} from "../actions/StarWars/StarwarsActions";
 import {STARWARS_LOADING, STARWARS_RESOURCES} from "../actions/StarWars/StarwarsActionsType";
-import configureMockStore from 'redux-mock-store';
+
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -28,4 +31,5 @@ describe("render App component", () => {
     const actions = store.getActions()
     expect(actions[0].type).toBe(STARWARS_LOADING)
   })
+
 });

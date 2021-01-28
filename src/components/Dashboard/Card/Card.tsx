@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { Card } from "@material-ui/core";
 import { Select, MenuItem } from "@material-ui/core";
 import { CirclePoints } from "./CirclePoints";
@@ -13,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootStoreType } from "../../../store";
 import { setActiveSelect } from "../../../actions/Select/SelectActions";
 import { checkIfUnknown } from "../../../utils/utils";
+
 
 type CardExtProps = {
   isActive: boolean;
@@ -44,13 +46,13 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
   const selectState = useSelector((state: RootStoreType) => state.select);
 
   useEffect(() => {
-    if (selectState.firstSelect !== undefined) {
+    if (selectState?.firstSelect !== undefined) {
       setFirstSelect(selectState.firstSelect);
     }
-    if (selectState.secondSelect !== undefined) {
+    if (selectState?.secondSelect !== undefined) {
       setSecondSelect(selectState.secondSelect);
     }
-  }, [selectState.firstSelect, selectState.secondSelect]);
+  }, [selectState?.firstSelect, selectState?.secondSelect]);
 
   const updateValue = (e: object | any): void => {
     const { value, name } = e.target;
@@ -72,6 +74,7 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
 
   return (
     <CardExtStyle>
+      <div>HELLLOOO</div>
       {player ? (
         <InfoInside>
             <CardItemInside
@@ -142,7 +145,7 @@ const CardExtStyle = styled(Card)`
   }
 `;
 
-const QuestionMark = styled.p`
+export const QuestionMark = styled.p`
   position: absolute;
   font-size: 14rem;
   color: rgba(255, 255, 255, 0.8);
@@ -168,7 +171,7 @@ const QuestionMark = styled.p`
   }
 `;
 
-const InfoInside = styled.div`
+export const InfoInside = styled.div`
   width: 100%;
   height: 95%;
   display: flex;
