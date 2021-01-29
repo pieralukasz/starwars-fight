@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
 
-export const Navigation: React.FC = () => {
+export const Header: React.FC = () => {
 
   const { t } = useTranslation()
 
@@ -21,6 +21,5 @@ const NavigationStyle = styled.nav`
   @media (max-width: 700px) {
     font-size: 1.5rem;
   }
-
 
 `
