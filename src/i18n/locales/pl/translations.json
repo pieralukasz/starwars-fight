@@ -10,5 +10,6 @@
   "crew": "zaloga",
   "type": "Typ",
   "name_starships": "nazwa",
-  "name_people": "imie"
+  "name_people": "imie",
+  "loading": "ladowanie"
 }

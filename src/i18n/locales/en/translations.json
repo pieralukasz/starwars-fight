@@ -10,5 +10,6 @@
   "crew": "crew",
   "type": "type",
   "name_starships": "name",
-  "name_people": "name"
+  "name_people": "name",
+  "loading": "loading"
 }

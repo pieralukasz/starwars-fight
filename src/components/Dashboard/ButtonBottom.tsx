@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {BaseButton} from "../BaseButton";
+import {BaseButton} from "./BaseButton";
 import {useDispatch, useSelector} from "react-redux";
-import { GetTwoStarwarsPlayer } from "../../../actions/StarWars/StarwarsActions";
-import {RootStoreType} from "../../../store";
-import {resetAllPoints} from "../../../actions/Points/PointsAction";
+import { GetTwoStarwarsPlayer } from "../../actions/StarWars/StarwarsActions";
+import {RootStoreType} from "../../store";
+import {resetAllPoints} from "../../actions/Points/PointsAction";
 import {useTranslation} from "react-i18next";
 
 export const ButtonBottom: React.FC = () => {
@@ -61,6 +61,7 @@ export const ButtonBottom: React.FC = () => {
     <>
       <BaseButton
         backgroundColor={'#e74c3c'}
+        hover={'#e36a5e'}
         fontColor={'white'}
         percent={21}
         position={'left'}
@@ -69,7 +70,8 @@ export const ButtonBottom: React.FC = () => {
       </BaseButton>
       <BaseButton
         fontColor={'black'}
-        backgroundColor={'yellow'}
+        backgroundColor={'#FFFF00'}
+        hover={'#f8f883'}
         position={'right'}
         percent={35}
         action={generateRandomPlayer}

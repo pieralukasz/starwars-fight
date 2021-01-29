@@ -9,12 +9,16 @@ import {
   StarwarsRequestEnum,
   StarwarsStarshipCrew,
 } from "../../../actions/StarWars/StarwarsActionsType";
-import { CardItemInside } from "./CardItemInside";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStoreType } from "../../../store";
 import { setActiveSelect } from "../../../actions/Select/SelectActions";
 import { checkIfUnknown } from "../../../utils/utils";
 import { useTranslation } from "react-i18next";
+
+const CardItemInside = React.lazy(() => {
+  return import('./CardItemInside')
+    .then(({CardItemInside}) => ({default: CardItemInside}))
+})
 
 type CardExtProps = {
   isActive: boolean;
@@ -73,26 +77,29 @@ export const CardExt: React.FC<CardExtProps> = (props) => {
     setPlayerDefault(check);
   }, [player]);
 
+
   return (
     <CardExtStyle>
       {player ? (
         <InfoInside>
-          <CardItemInside
-            title={t("type")}
-            description={isPeople() ? t("people") : t("starships")}
-          />
-          <CardItemInside
-            title={isPeople() ? t("name_people") : t("name_starships")}
-            description={player?.name}
-          />
-          <CardItemInside
-            title={isPeople() ? t("mass") : t("crew")}
-            description={
-              isPeople()
-                ? checkIfUnknown(player?.mass)
-                : checkIfUnknown(player?.crew)
-            }
-          />
+          <React.Suspense fallback={<div>{t("loading")}</div>}>
+            <CardItemInside
+              title={t("type")}
+              description={isPeople() ? t("people") : t("starships")}
+            />
+            <CardItemInside
+              title={isPeople() ? t("name_people") : t("name_starships")}
+              description={player?.name}
+            />
+            <CardItemInside
+              title={isPeople() ? t("mass") : t("crew")}
+              description={
+                isPeople()
+                  ? checkIfUnknown(player?.mass)
+                  : checkIfUnknown(player?.crew)
+              }
+            />
+          </React.Suspense>
         </InfoInside>
       ) : (
         <QuestionMark>?</QuestionMark>

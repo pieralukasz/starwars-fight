@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 interface BaseButtonType {
   backgroundColor: string
+  hover: string
   fontColor: string
   percent: number
   position: string
@@ -21,6 +22,7 @@ export const BaseButton: React.FC<BaseButtonType> = (props) => {
       percent={ props.percent }
       onClick={ props.action }
       disabled={ props.disabled }
+      hover={ props.hover }
     >
       { props.children }
     </BaseButtonStyle>
@@ -51,10 +53,11 @@ export const BaseButtonStyle = styled.button<BaseButtonType> `
 
   &:hover {
     cursor: pointer;
+    background-color: ${p => p.hover}
   }
 
   &:active {
-    background-color: lighten(${p => p.backgroundColor}, 10%);
+    background-color: lighten(${p => p.backgroundColor}, 10);
     padding: 1.25rem
   }
 

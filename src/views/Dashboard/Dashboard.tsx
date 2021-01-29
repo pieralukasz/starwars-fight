@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { CardContainer } from "../../components/Dashboard/Card/CardContainer";
-import {ButtonBottom} from "../../components/Dashboard/ButtonBottom/ButtonBottom";
+import {ButtonBottom} from "../../components/Dashboard/ButtonBottom";
 import {useSelector} from "react-redux";
 import {RootStoreType} from "../../store";
 
