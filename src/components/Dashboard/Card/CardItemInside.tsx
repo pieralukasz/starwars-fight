@@ -31,6 +31,10 @@ const Title = styled.div`
   @media (max-width: 900px) {
     font-size: 1.20rem;
   }
+
+  @media (max-width: 450px) {
+    font-size: 1rem;
+  }
 `
 
 const Description = styled.div`
@@ -43,5 +47,9 @@ const Description = styled.div`
 
   @media (max-width: 900px) {
     font-size: 1.05rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 0.9rem;
   }
 `

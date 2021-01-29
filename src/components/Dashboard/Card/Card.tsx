@@ -198,6 +198,10 @@ export const InfoInside = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+
+  @media (max-width: 450px) {
+    height: 85%;
+  }
 `;
 
 const SelectExpLeft = styled(Select)`
