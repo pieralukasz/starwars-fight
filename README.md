@@ -1,5 +1,11 @@
 # Zadanie rekrutacyjne dla Code & Pepper
 
+## Podgląd aplikacji
+
+```text
+http://swapicandp.herokuapp.com/
+```
+
 ## Przedstawienie aplikacji
 
 Aplikacja pobiera dane z zewnętrznego serwera API
