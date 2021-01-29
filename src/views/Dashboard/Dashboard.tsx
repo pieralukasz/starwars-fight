@@ -31,7 +31,15 @@ const DashboardContainer = styled.div`
     padding-top: 2rem;
     width: 100%;
     margin: 0;
-  }`
+  }
+
+  @media (max-width: 450px) {
+    padding-top: 0.25rem;
+  }
+
+`
+
+
 
 const LoaderElement = styled.div`
   position: fixed;

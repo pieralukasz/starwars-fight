@@ -98,5 +98,10 @@ export const BaseButtonStyle = styled.button<BaseButtonType> `
   `}
   }
 
+  @media (max-width: 450px) {
+    padding: 0.30rem;
+    font-size: 0.85rem;
+  }
+
 
 `

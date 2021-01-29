@@ -157,6 +157,13 @@ const CardExtStyle = styled(Card)`
     max-width: 200px;
     min-width: 200px;
   }
+
+  @media (max-width: 450px) {
+    max-height: 170px;
+    min-height: 170px;
+    max-width: 170px;
+    min-width: 170px;
+  }
 `;
 
 export const QuestionMark = styled.p`

@@ -20,6 +20,12 @@ const NavigationStyle = styled.nav`
 
   @media (max-width: 700px) {
     font-size: 1.5rem;
+    margin-top: 1rem;
+
+  }
+
+  @media (max-width: 450px) {
+    font-size: 1.25rem;
   }
 
 `
