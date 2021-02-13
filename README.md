@@ -1,4 +1,4 @@
-# Zadanie rekrutacyjne dla Code & Pepper
+# Starwars FIGHT!
 
 ## Podgląd aplikacji
 
